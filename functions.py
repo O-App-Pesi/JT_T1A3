@@ -1,7 +1,13 @@
 import random
+from rich.prompt import Prompt, Confirm
+from colored import fg, bg, attr
 
 def pull_fortune():
-    print("pull a fortune")
+    print("You arrive at a window where a shrine maiden is attending")
+    print("A box sits on the counter in front of the window")
+    print("If you shake, twist or roll this box, you can pull out a number")
+    print("The shrine maiden will give you an omikuji (sacred fortune) in return...")
+    user_continue = Confirm.ask("Would you like to pull a fortune?")
 
 def write_block():
     print("write on wish block")
