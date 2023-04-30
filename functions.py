@@ -28,6 +28,10 @@ def pull_fortune():
                 action_number = random.randint(11, 15)
                 pull_number += action_number
                 user_continue = Confirm.ask("Continue manipulating the cylinder?")
+            elif action == "twist":
+                print("You twist the cylinder left to right, the rods inside clunking top and bottom")
+                
+                 
 
 def write_block():
     print("write on wish block")
