@@ -20,11 +20,11 @@ def pull_fortune():
             pull_number = 0
             if action == "shake":
                 print("You shake the cylinder vigorously")
-                action_number = random.randint(6, 10)
+                action_number = random.randint(3, 5)
                 pull_number += action_number
             elif action == "roll":
                 print("You roll the cylinder on its side systematically")
-                action_number = random.randint(11, 15)
+                action_number = random.randint(1, 3)
                 pull_number += action_number
             elif action == "twist":
                 print("You twist the cylinder left to right, the rods inside clunking top and bottom")
@@ -37,6 +37,29 @@ def pull_fortune():
             pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
         final_fortune()
     else:
+        from_fortune()
+
+
+def final_fortune():
+    print(f"You draw a stick from the cylinder, it has the number {pull_number}")
+    print("You show the stick to the shrine maiden and she pulls a slip of paper from one of many drawers")
+    print("The slip of paper reads:")
+    if pull_number == 0:
+        print("大凶, dai-kyō")
+    elif pull_number > 0 < 5:
+        print("小吉, shō-kichi")
+    elif pull_number >= 5 < 10:
+        print("吉, kichi")
+    elif pull_number >= 10 < 15:
+        print("大吉, dai-kichi")
+    elif pull_number < 0:
+        print("凶, kyō")
+    else:
+        print("吉凶未分, kikkyō imada wakarazu")
+    from_fortune()
+    
+
+def from_fortune():
         direction = Prompt.ask("Where would you like to go?", 
                                choices=["East", "West", "Entrance"],
                                default="Entrance")
@@ -46,10 +69,6 @@ def pull_fortune():
             prayer_box()
         elif direction == "East":
             write_block()
-
-def final_fortune():
-    print(f"You draw a stick from the cylinder, it has the number {pull_number}")
-
 
 def write_block():
     print("write on wish block")
