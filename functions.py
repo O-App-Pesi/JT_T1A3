@@ -12,34 +12,30 @@ def pull_fortune():
         print("You take the hexagonal cylinder in your hands...")
         print("Here's your chance to find your destiny...")
         print("Looks like you can shake, twist or roll it,")
-        print("There may be hidden actions as well...")
-        while user_continue:
+        pick_up_cylinder = True
+        while pick_up_cylinder:
             action = Prompt.ask("What will you do?", 
-                                choices=["shake", "roll", "twist", "bash",
-                                         "juggle", "special"])
+                                choices=["shake", "roll", "twist", "bash"])
+            global pull_number
             pull_number = 0
             if action == "shake":
                 print("You shake the cylinder vigorously")
                 action_number = random.randint(6, 10)
                 pull_number += action_number
-                user_continue = Confirm.ask("Continue manipulating the cylinder?")
             elif action == "roll":
                 print("You roll the cylinder on its side systematically")
                 action_number = random.randint(11, 15)
                 pull_number += action_number
-                user_continue = Confirm.ask("Continue manipulating the cylinder?")
             elif action == "twist":
                 print("You twist the cylinder left to right, the rods inside clunking top and bottom")
                 action_number = random.randint(1, 5)
                 pull_number += action_number 
-                user_continue = Confirm.ask("Continue manipulating the cylinder?")
             elif action == "bash":
                 print("The shrine maiden gives you a funny look...")
                 action_number = -10
                 pull_number += action_number
-                user_continue = Confirm.ask("Continue manipulating the cylinder?")
-
-
+            pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
+        final_fortune()
     else:
         direction = Prompt.ask("Where would you like to go?", 
                                choices=["East", "West", "Entrance"],
@@ -50,7 +46,10 @@ def pull_fortune():
             prayer_box()
         elif direction == "East":
             write_block()
-                 
+
+def final_fortune():
+    print(f"You draw a stick from the cylinder, it has the number {pull_number}")
+
 
 def write_block():
     print("write on wish block")
