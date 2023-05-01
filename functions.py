@@ -30,7 +30,26 @@ def pull_fortune():
                 user_continue = Confirm.ask("Continue manipulating the cylinder?")
             elif action == "twist":
                 print("You twist the cylinder left to right, the rods inside clunking top and bottom")
-                
+                action_number = random.randint(1, 5)
+                pull_number += action_number 
+                user_continue = Confirm.ask("Continue manipulating the cylinder?")
+            elif action == "bash":
+                print("The shrine maiden gives you a funny look...")
+                action_number = -10
+                pull_number += action_number
+                user_continue = Confirm.ask("Continue manipulating the cylinder?")
+
+
+    else:
+        direction = Prompt.ask("Where would you like to go?", 
+                               choices=["East", "West", "Entrance"],
+                               default="Entrance")
+        if direction == "Entrance":
+            entrance()
+        elif direction == "West":
+            prayer_box()
+        elif direction == "East":
+            write_block()
                  
 
 def write_block():
