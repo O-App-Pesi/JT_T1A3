@@ -20,20 +20,21 @@ def pull_fortune():
             pull_number = 0
             if action == "shake":
                 print("You shake the cylinder vigorously")
-                action_number = random.randint(3, 5)
+                action_number = random.randint(3, 8)
                 pull_number += action_number
             elif action == "roll":
                 print("You roll the cylinder on its side systematically")
-                action_number = random.randint(1, 3)
+                action_number = random.randint(1, 4)
                 pull_number += action_number
             elif action == "twist":
                 print("You twist the cylinder left to right, the rods inside clunking top and bottom")
-                action_number = random.randint(1, 5)
+                action_number = random.randint(5, 9)
                 pull_number += action_number 
             elif action == "bash":
                 print("The shrine maiden gives you a funny look...")
-                action_number = -10
+                action_number = random.randint(-1, -6)
                 pull_number += action_number
+            print(f"If you finish now you'll get {pull_number}")
             pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
         final_fortune()
     else:
@@ -41,18 +42,23 @@ def pull_fortune():
 
 
 def final_fortune():
+    dai_kyo = [8, 47, 14, 25, 49, 6, 17, 23, 45, 26]
+    sho_kichi = [30, 33, 9, 44, 24, 18, 36, 34, 50, 43]
+    kichi = [40, 5, 29, 21, 15, 28, 35, 2, 1, 27]
+    dai_kichi = [42, 38, 7, 10, 32, 11, 4, 37, 48, 16]
+    kyo = [46, 19, 31, 12, 20, 22, 41, 39, 13, 3]
     print(f"You draw a stick from the cylinder, it has the number {pull_number}")
     print("You show the stick to the shrine maiden and she pulls a slip of paper from one of many drawers")
     print("The slip of paper reads:")
-    if pull_number == 0:
+    if pull_number in dai_kyo:
         print("大凶, dai-kyō")
-    elif pull_number > 0 < 5:
+    elif pull_number in sho_kichi:
         print("小吉, shō-kichi")
-    elif pull_number >= 5 < 10:
+    elif pull_number in kichi:
         print("吉, kichi")
-    elif pull_number >= 10 < 15:
+    elif pull_number in dai_kichi:
         print("大吉, dai-kichi")
-    elif pull_number < 0:
+    elif pull_number in kyo:
         print("凶, kyō")
     else:
         print("吉凶未分, kikkyō imada wakarazu")
