@@ -113,6 +113,18 @@ def write_on_block():
         writer = csv.writer(file)
         writer.writerow([date, user_wish])
     print("Your hang the block upon the wire hopefully, fate is in the gods hands now...")
+    to_do_next_wish()
+
+def review_previous_wishes():
+    with open('mywishes.csv', "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            print(row[1])
+            print(f"This wish was made on {row[0]}")
+            print("Has it come true???")
+    to_do_next_wish()
+
+def to_do_next_wish():
     user_choice = Prompt.ask("What would you like to do next?", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
         write_on_block()
@@ -121,8 +133,6 @@ def write_on_block():
     else:
         from_wish_block()
 
-def review_previous_wishes():
-    print("review wishes")
 
 def prayer_box():
     print("pray to the god of this shrine")
