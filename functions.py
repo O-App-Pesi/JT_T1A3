@@ -97,30 +97,32 @@ def wish_block():
     print("You arrive to rows of wires hung up with small wooden blocks dangling from them")
     print("These wooden blocks have people's wishes written on them")
     print("If you write a wish on block and then hang it up, it may come true...")
-    user_choice = Prompt.ask("Would you like to make a wish?", choices=["Wish", "Review", "Leave"])
+    user_choice = Prompt.ask("What is it you choose?", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
-        user_wish = input("What is your wish?")
-        date = input("What is today's date?")
-        write_on_block(user_wish, date)
+        write_on_block()
     elif user_choice == "Review":
         review_previous_wishes()
     else:
         from_wish_block()
 
-def write_on_block(wish, date):
+def write_on_block():
     column_name = ["Date", "Wish"]
-    with open('mywishes.csv', 'w') as file:
-        writer = csv.writer(file)
-        writer.writerow(column_name)
+    user_wish = input("What is your wish?")
+    date = input("What is today's date?")
     with open('mywishes.csv', 'a') as file:
-        writer = writer(file)
-        writer.writerow("Date", "Wish")
+        writer = csv.writer(file)
+        writer.writerow([date, user_wish])
     print("Your hang the block upon the wire hopefully, fate is in the gods hands now...")
+    user_choice = Prompt.ask("What would you like to do next?", choices=["Wish", "Review", "Leave"])
+    if user_choice == "Wish":
+        write_on_block()
+    elif user_choice == "Review":
+        review_previous_wishes()
+    else:
+        from_wish_block()
 
 def review_previous_wishes():
     print("review wishes")
-
-    
 
 def prayer_box():
     print("pray to the god of this shrine")
