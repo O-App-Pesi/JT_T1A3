@@ -13,12 +13,11 @@ def pull_fortune():
         print("You take the hexagonal cylinder in your hands...")
         print("Here's your chance to find your destiny...")
         print("Looks like you can shake, twist or roll it,")
+        pull_number = 0
         pick_up_cylinder = True
         while pick_up_cylinder:
             action = Prompt.ask("What will you do?", 
                                 choices=["shake", "roll", "twist", "bash"])
-            global pull_number
-            pull_number = 0
             if action == "shake":
                 print("You shake the cylinder vigorously")
                 action_number = random.randint(3, 8)
@@ -33,16 +32,16 @@ def pull_fortune():
                 pull_number += action_number 
             elif action == "bash":
                 print("The shrine maiden gives you a funny look...")
-                action_number = random.randint(-1, -6)
-                pull_number += action_number
+                action_number = random.randint(1, 6)
+                pull_number -= action_number
             print(f"If you finish now you'll get {pull_number}")
             pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
-        final_fortune()
+        final_fortune(pull_number)
     else:
         from_fortune()
 
 
-def final_fortune():
+def final_fortune(pull_number):
     dai_kyo = [8, 47, 14, 25, 49, 6, 17, 23, 45, 26]
     sho_kichi = [30, 33, 9, 44, 24, 18, 36, 34, 50, 43]
     kichi = [40, 5, 29, 21, 15, 28, 35, 2, 1, 27]
