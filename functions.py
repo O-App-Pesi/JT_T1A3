@@ -1,4 +1,5 @@
 import random
+import csv
 from rich.prompt import Prompt, Confirm
 from colored import fg, bg, attr
 
@@ -62,22 +63,64 @@ def final_fortune():
         print("凶, kyō")
     else:
         print("吉凶未分, kikkyō imada wakarazu")
+    user_continue = Confirm.ask("Continue?")
     from_fortune()
     
 
 def from_fortune():
         direction = Prompt.ask("Where would you like to go?", 
-                               choices=["East", "West", "Entrance"],
+                               choices=["East", "West", "Entrance", "Fortunes"],
                                default="Entrance")
         if direction == "Entrance":
             entrance()
         elif direction == "West":
             prayer_box()
         elif direction == "East":
-            write_block()
+            wish_block()
+        elif direction == "Fortunes":
+            pull_fortune()
 
-def write_block():
-    print("write on wish block")
+def from_wish_block():
+        direction = Prompt.ask("Where would you like to go?", 
+                               choices=["North", "West", "Entrance", "Wishes"],
+                               default="Entrance")
+        if direction == "Entrance":
+            entrance()
+        elif direction == "West":
+            prayer_box()
+        elif direction == "North":
+            pull_fortune()
+        elif direction == "Fortunes":
+            wish_block()
+
+def wish_block():
+    print("You arrive to rows of wires hung up with small wooden blocks dangling from them")
+    print("These wooden blocks have people's wishes written on them")
+    print("If you write a wish on block and then hang it up, it may come true...")
+    user_choice = Prompt.ask("Would you like to make a wish?", choices=["Wish", "Review", "Leave"])
+    if user_choice == "Wish":
+        user_wish = input("What is your wish?")
+        date = input("What is today's date?")
+        write_on_block(user_wish, date)
+    elif user_choice == "Review":
+        review_previous_wishes()
+    else:
+        from_wish_block()
+
+def write_on_block(wish, date):
+    column_name = ["Date", "Wish"]
+    with open('mywishes.csv', 'w') as file:
+        writer = csv.writer(file)
+        writer.writerow(column_name)
+    with open('mywishes.csv', 'a') as file:
+        writer = writer(file)
+        writer.writerow("Date", "Wish")
+    print("Your hang the block upon the wire hopefully, fate is in the gods hands now...")
+
+def review_previous_wishes():
+    print("review wishes")
+
+    
 
 def prayer_box():
     print("pray to the god of this shrine")
@@ -95,7 +138,7 @@ def entrance():
         if direction == "North":
             pull_fortune()
         elif direction == "East":
-            write_block()
+            wish_block()
         elif direction == "West":
             prayer_box()
 
