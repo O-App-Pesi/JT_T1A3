@@ -134,7 +134,40 @@ def to_do_next_wish():
 
 
 def prayer_box():
-    print("pray to the god of this shrine")
+    round_number = random.randint(1, 5)
+    print("There is a large donation box with a rope attached to a bell hanging above it.")
+    print("If you make a donation, you may ring the bell to pray for the god's blessing.")
+    print("It's your lucky day, you find a coin on the ground with no one around...")
+    print("Is it an auspicious sign?")
+    donate = Confirm.ask("Drop the coin in the donation box?")
+    if donate:
+        print("You drop the coin in the donation box and hear it clink on the bottom.")
+        print("Grabbing the rope firmly, you whip it and the bell rings loudly...")
+        if round_number == 1:
+            print("Suddenly an auspicious wind whips up some fallen leaves, swirling all around you")
+            print("Chimes hanging from the eaves begin to jingle and you feel a cool breeze on your neck")
+            print("Today your luck feels... irridescent")
+        elif round_number == 2:
+            print("You wait but nothing occurs... You close your eyes and pray")
+            print("You pray as hard as you can but nothing seems to happen")
+            print("Today your luck feels inconsequential")
+        elif round_number == 3:
+            print("You close your eyes and a cold shiver runs down your spine")
+            print("as you open them you see the sun has been blocked out by dark clouds")
+            print("You quickly run to shelter and it looks like there might be heavy rain any moment")
+            print("Today your luck feels foreboding")
+        elif round_number == 4:
+            print("You feel something inside your shoe that wasn't there before.")
+            print("You take off your shoe to get it out but as you hop around on one leg,")
+            print("you lose your balance and fall over in the dirt")
+            print("Today your luck feels unpredictable...")
+        else:
+            print("You hear the rustling of a nearby bush")
+            print("as you look over, a fox jumps out and greets you")
+            print("Foxes are a blessed symbol")
+            print("Today your luck feels positively uncomparable")
+        
+
 
 def entrance():
     print("Welcome to KaiShin Shrine!")
