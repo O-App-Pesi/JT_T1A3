@@ -62,15 +62,15 @@ def final_fortune(pull_number):
     console.print("[i]The slip of paper reads:[/i]")
     print(" ")
     if pull_number in dai_kyo:
-        console.print("[dark red]大凶, dai-kyō[/darkred]")
+        console.print("[firebrick1]大凶, dai-kyō[/firebrick1]")
         print(" ")
-        console.print("dai-kyō represents a [b][dark red]terrible curse![/b][/dark red]")
+        console.print("dai-kyō represents a [b][firebrick1]terrible curse![/b][/firebrick1]")
         console.print("Perhaps it would behoove you to not step on any cracks...")
         print(" ")
     elif pull_number in sho_kichi:
-        console.print("[light green]小吉, shō-kichi[/light green]")
+        console.print("[yellow green]小吉, shō-kichi[/yellow green]")
         print(" ")
-        console.print("shō-kichi is [i][light green]small blessing[/light green][/i]")
+        console.print("shō-kichi is [i][yellow green]small blessing[/yellow green][/i]")
         console.print("Check your wallet, perhaps you'll find some extra cash")
         print(" ")
     elif pull_number in kichi:
@@ -80,9 +80,9 @@ def final_fortune(pull_number):
         console.print("I heard they're having [b]fifty percent off[/b] at that local restaurant you like so much")
         print(" ")
     elif pull_number in dai_kichi:
-        console.print("[bright green]大吉, dai-kichi[/bright green]")
+        console.print("[lime green]大吉, dai-kichi[/lime green]")
         print(" ")
-        console.print("dai-kichi is an [u]extreme[/u] amount of [bright green]luck![/bright green]")
+        console.print("dai-kichi is an [u]extreme[/u] amount of [lime green]luck![/lime green]")
         console.print("I dunno what's gonna happen but it must be [u]good!!![/u]")
         print(" ")
     elif pull_number in kyo:
@@ -92,7 +92,11 @@ def final_fortune(pull_number):
         console.print("You might just stub your toe or something soon...")
         print(" ")
     else:
-        console.print("吉凶未分, kikkyō imada wakarazu")
+        console.print("[blue]吉凶未分, kikkyō imada wakarazu[/blue]")
+        print(" ")
+        console.print("kikkyō imada wakarazu means that your fortunes are [cornflower blue]not yet fortold[/cornflower blue]")
+        console.print("Your [i]destiny[/i] is what you make it..")
+        print(" ")
     input("Enter to continue: ")
     from_fortune()
     
@@ -140,9 +144,10 @@ def from_prayer_box():
             raise KeyboardInterrupt
 
 def wish_block():
-    print("You arrive to rows of wires hung up with small wooden blocks dangling from them")
-    print("These wooden blocks have people's wishes written on them")
-    print("If you write a wish on block and then hang it up, it may come true...")
+    print(" ")
+    print("[i]You arrive to rows of wires hung up with small wooden blocks dangling from them[/i]")
+    print("[i]These wooden blocks have people's wishes written on them[/i]")
+    print("[i]If you write a wish on block and then hang it up, it may come true...[/i]")
     user_choice = Prompt.ask("What is it you choose? ", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
         write_on_block()
@@ -154,12 +159,14 @@ def wish_block():
 def write_on_block():
     try:
         column_name = ["Date", "Wish"]
+        print(" ")
         user_wish = input("What is your wish?")
         date = input("What is today's date?")
         with open('mywishes.csv', 'a') as file:
             writer = csv.writer(file)
             writer.writerow([date, user_wish])
-        print("Your hang the block upon the wire hopefully, fate is in the gods hands now...")
+        print("[i]You hang the block upon the wire hopefully, fate is in the gods hands now...[/i]")
+        print(" ")
         to_do_next_wish()
     except EOFError as e:
         print("Your wishes are full!")
@@ -169,13 +176,16 @@ def review_previous_wishes():
     try:
         with open('mywishes.csv', "r") as file:
             reader = csv.reader(file)
+            print(" ")
             table = Table(title="My Wishes")
             table.add_column("Date", justify="center", style="cyan", no_wrap=True)
             table.add_column("Wish", justify="center", style="green")
             for row in reader:
                 table.add_row(row[0], row[1])
             console.print(table)
-            console.print("Have you wishes come true?")  
+            print(" ")
+            console.print("[i]Have you wishes come true?[/i]")
+            print(" ")
         to_do_next_wish()
     except FileNotFoundError as e:
         print("You didn't make any wishes yet!")
@@ -193,40 +203,49 @@ def to_do_next_wish():
 
 def prayer_box():
     round_number = random.randint(1, 5)
-    print("There is a large donation box with a rope attached to a bell hanging above it.")
-    print("If you make a donation, you may ring the bell to pray for the god's blessing.")
-    print("It's your lucky day, you find a coin on the ground with no one around...")
-    print("Is it an auspicious sign?")
+    print(" ")
+    console.print("[i]There is a [b]large donation box[/b] with a rope attached to a bell hanging above it.[/i]")
+    console.print("[i]If you make a [b]donation[/b], you may ring the bell to pray for the [yellow]god's blessing.[/yellow][/i]")
+    console.print("[i]It's your lucky day, you find a [b]coin[/b] on the ground with no one around...[/i]")
+    console.print("[i]Is it an [yellow]auspicious signp[/yellow]?[[/i]")
+    print(" ")
     donate = Confirm.ask("Drop the coin in the donation box?")
     if donate:
-        print("You drop the coin in the donation box and hear it clink on the bottom.")
-        print("Grabbing the rope firmly, you whip it and the bell rings loudly...")
+        console.print("[i]You drop the coin in the donation box and hear it clink on the bottom.[/i]")
+        console.print("[i]Grabbing the rope firmly, you whip it and the bell rings [b]loudly[/b]...[/i]")
+        print(" ")
         if round_number == 1:
-            print("Suddenly an auspicious wind whips up some fallen leaves, swirling all around you")
-            print("Chimes hanging from the eaves begin to jingle and you feel a cool breeze on your neck")
-            print("Today your luck feels... irridescent")
+            console.print("[i]Suddenly an [green]auspicious wind[/green] whips up some fallen leaves, swirling all around you[/i]")
+            console.print("[i]Chimes hanging from the eaves begin to jingle and you feel a cool breeze on your neck[/i]")
+            console.print("[i]Today your luck feels... [gold]irridescent[/gold][/i]")
+            print(" ")
         elif round_number == 2:
-            print("You wait but nothing occurs... You close your eyes and pray")
-            print("You pray as hard as you can but nothing seems to happen")
-            print("Today your luck feels inconsequential")
+            console.print("[i]You wait but nothing occurs... You close your eyes and pray[/i]")
+            console.print("[i]You pray as hard as you can but nothing seems to happen[/i]")
+            console.print("[i]Today your luck feels [saddlebrown]inconsequential[/saddlebrown][/i]")
+            print(" ")
         elif round_number == 3:
-            print("You close your eyes and a cold shiver runs down your spine")
-            print("as you open them you see the sun has been blocked out by dark clouds")
-            print("You quickly run to shelter and it looks like there might be heavy rain any moment")
-            print("Today your luck feels foreboding")
+            console.print("[i]You close your eyes and a cold shiver runs down your spine[/i]")
+            console.print("[i]as you open them you see the sun has been blocked out by dark clouds[/i]")
+            console.print("[i]You quickly run to shelter and it looks like there might be heavy rain any moment[/i]")
+            console.print("[i]Today your luck feels [red]foreboding[/red][/i]")
+            print(" ")
         elif round_number == 4:
-            print("You feel something inside your shoe that wasn't there before.")
-            print("You take off your shoe to get it out but as you hop around on one leg,")
-            print("you lose your balance and fall over in the dirt")
-            print("Today your luck feels unpredictable...")
+            console.print("[i]You feel something inside your shoe that wasn't there before.[/i]")
+            console.print("[i]You take off your shoe to get it out but as you hop around on one leg,[/i]")
+            console.print("[i]you lose your balance and fall over in the dirt[/i]")
+            console.print("[i]Today your luck feels [MediumOrchid1]unpredictable...[/MediumOrchid1][/i]")
+            print(" ")
         else:
-            print("You hear the rustling of a nearby bush")
-            print("as you look over, a fox jumps out and greets you")
-            print("Foxes are a blessed symbol")
-            print("Today your luck feels positively uncomparable")
+            console.print("[i]You hear the rustling of a nearby bush[/i]")
+            console.print("[i]as you look over, a fox jumps out and greets you[/i]")
+            console.print("[i]Foxes are a blessed symbol[/i]")
+            console.print("[i]Today your luck feels [white on dark violet]positively uncomparable[/white on dark violet][/i]")
+            print(" ")
         draw_fortune = Confirm.ask("With your newfound luck in hand perhaps you would like to try your hand at drawing a fortune?")
         if draw_fortune:
-            print("You rush to the fortunes window and quickly take the lottery box in hand")
+            console.print("You [IndianRed1]rush[/IndianRed1] to the fortunes window and quickly take the [u]lottery cylinder[/u] in hand")
+            print(" ")
             final_fortune(round_number)
         else:
             from_prayer_box()
@@ -236,6 +255,7 @@ def prayer_box():
 
 
 def entrance():
+    print(" ")
     print("Welcome to KaiShin Shrine!")
     print("A large Tori gate stands before you,")
     print("as you walk through it you notice a sign ahead.")
@@ -243,6 +263,7 @@ def entrance():
     print("'\u21B1 East you can find wishing blocks'")
     print("'\u21B0 West you can pray to the gods of this shrine'")
     print("Quit to exit")
+    print(" ")
     direction = Prompt.ask("Where would you like to go? ", choices=["North", "East", "West", "Quit"])
     if direction == "North":
         pull_fortune()
