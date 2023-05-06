@@ -5,15 +5,18 @@ from console import console
 from rich.table import Table
 
 def pull_fortune():
-    print("You arrive at a window where a shrine maiden is attending")
-    print("A hexgonal cylinder sits on the counter in front of the window")
-    print("If you shake, twist or roll this box, you can pull out a number")
-    print("The shrine maiden will give you an omikuji (sacred fortune) in return...")
-    user_continue = Confirm.ask("Would you like to pull a fortune?")
+    print(" ")
+    console.print("[i]You arrive at a window where a [u]Shrine Maiden[/u] is attending.[/i]")
+    console.print("[i]A [u]hexagonal cylinder[/u] sits on the counter in front of the window.[/i]")
+    console.print("[i]If you [black on yellow]shake[/], [black on yellow]twist[/] or [black on yellow]roll[/] this cylinder, you can pull out a number[/i]")
+    console.print("[i]The Shrine Maiden will give you an [blue on grey]omikuji[/] (sacred fortune) based on the number you pull[/i]")
+    print(" ")
+    user_continue = Confirm.ask("Would you like to pull for a fortune?")
     if user_continue:
-        print("You take the hexagonal cylinder in your hands...")
-        print("Here's your chance to find your destiny...")
-        print("Looks like you can shake, twist or roll it,")
+        print(" ")
+        console.print("[i]You take the hexagonal cylinder in your hands...[/i]")
+        console.print("[i]Here's your chance to find your destiny...[/i]")
+        print(" ")[i]
         pull_number = 0
         pick_up_cylinder = True
         while pick_up_cylinder:
@@ -21,25 +24,25 @@ def pull_fortune():
                 action = Prompt.ask("What will you do?", 
                                     choices=["shake", "roll", "twist", "bash"])
                 if action == "shake":
-                    print("You shake the cylinder vigorously")
+                    console.print("[i]You shake the cylinder vigorously[/i]")
                     action_number = random.randint(3, 8)
                     pull_number += action_number
                 elif action == "roll":
-                    print("You roll the cylinder on its side systematically")
+                    console.print("[i]You roll the cylinder on its side systematically[/i]")
                     action_number = random.randint(1, 4)
                     pull_number += action_number
                 elif action == "twist":
-                    print("You twist the cylinder left to right, the rods inside clunking top and bottom")
+                    console.print("[i]You twist the cylinder left to right, the rods inside clunking top and bottom[/i]")
                     action_number = random.randint(5, 9)
                     pull_number += action_number 
                 elif action == "bash":
-                    print("The shrine maiden gives you a funny look...")
+                    console.print("[i]The shrine maiden gives you a funny look...[/i]")
                     action_number = random.randint(1, 6)
                     pull_number -= action_number
-                print(f"If you finish now you'll get {pull_number}")
+                console.print(f"If you finish now you'll get {pull_number}")
                 pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
             except MemoryError as e:
-                print('You have manipulated the cylinder enough!')
+                print('[bold]You have manipulated the cylinder enough![/bold]')
                 pull_number = random.randint(1, 50)
                 final_fortune(pull_number)
         final_fortune(pull_number)
@@ -53,22 +56,44 @@ def final_fortune(pull_number):
     kichi = [40, 29, 21, 15, 28, 35, 23, 36, 27, 1]
     dai_kichi = [42, 38, 7, 10, 32, 11, 4, 37, 48, 16, 5]
     kyo = [46, 19, 31, 12, 20, 22, 41, 39, 13, 4]
-    print(f"You draw a stick from the cylinder, it has the number {pull_number}")
-    print("You show the stick to the shrine maiden and she pulls a slip of paper from one of many drawers")
-    print("The slip of paper reads:")
+    print(" ")
+    console.print(f"[i]You draw a stick from the cylinder, it has the number [blue]{pull_number}[/][/i]")
+    console.print("[i]You show the stick to the Shrine Maiden and she pulls a slip of paper from one of many drawers[/i]")
+    console.print("[i]The slip of paper reads:[/i]")
+    print(" ")
     if pull_number in dai_kyo:
-        print("大凶, dai-kyō")
+        console.print("[dark red]大凶, dai-kyō[/darkred]")
+        print(" ")
+        console.print("dai-kyō represents a [b][dark red]terrible curse![/b][/dark red]")
+        console.print("Perhaps it would behoove you to not step on any cracks...")
+        print(" ")
     elif pull_number in sho_kichi:
-        print("小吉, shō-kichi")
+        console.print("[light green]小吉, shō-kichi[/light green]")
+        print(" ")
+        console.print("shō-kichi is [i][light green]small blessing[/light green][/i]")
+        console.print("Check your wallet, perhaps you'll find some extra cash")
+        print(" ")
     elif pull_number in kichi:
-        print("吉, kichi")
+        console.print("[green]吉, kichi[/green]")
+        print(" ")
+        console.print("kichi is a regular amount of [green]luck[/green]")
+        console.print("I heard they're having [b]fifty percent off[/b] at that local restaurant you like so much")
+        print(" ")
     elif pull_number in dai_kichi:
-        print("大吉, dai-kichi")
+        console.print("[bright green]大吉, dai-kichi[/bright green]")
+        print(" ")
+        console.print("dai-kichi is an [u]extreme[/u] amount of [bright green]luck![/bright green]")
+        console.print("I dunno what's gonna happen but it must be [u]good!!![/u]")
+        print(" ")
     elif pull_number in kyo:
-        print("凶, kyō")
+        console.print("[orange]凶, kyō[/orange]")
+        print(" ")
+        console.print("kyō represents a [i]small[/i] bit of [orange]bad luck...[/orange]")
+        console.print("You might just stub your toe or something soon...")
+        print(" ")
     else:
-        print("吉凶未分, kikkyō imada wakarazu")
-    user_continue = Confirm.ask("Continue?")
+        console.print("吉凶未分, kikkyō imada wakarazu")
+    input("Enter to continue: ")
     from_fortune()
     
 
