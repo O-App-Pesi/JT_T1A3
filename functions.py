@@ -9,14 +9,14 @@ def pull_fortune():
     console.print("[i]You arrive at a window where a [u]Shrine Maiden[/u] is attending.[/i]")
     console.print("[i]A [u]hexagonal cylinder[/u] sits on the counter in front of the window.[/i]")
     console.print("[i]If you [black on yellow]shake[/], [black on yellow]twist[/] or [black on yellow]roll[/] this cylinder, you can pull out a number[/i]")
-    console.print("[i]The Shrine Maiden will give you an [blue on grey]omikuji[/] (sacred fortune) based on the number you pull[/i]")
+    console.print("[i]The Shrine Maiden will give you an [#9699f2]omikuji[/] (sacred fortune) based on the number you pull[/i]")
     print(" ")
     user_continue = Confirm.ask("Would you like to pull for a fortune?")
     if user_continue:
         print(" ")
         console.print("[i]You take the hexagonal cylinder in your hands...[/i]")
         console.print("[i]Here's your chance to find your destiny...[/i]")
-        print(" ")[i]
+        print(" ")
         pull_number = 0
         pick_up_cylinder = True
         while pick_up_cylinder:
@@ -42,7 +42,7 @@ def pull_fortune():
                 console.print(f"If you finish now you'll get {pull_number}")
                 pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
             except MemoryError as e:
-                print('[bold]You have manipulated the cylinder enough![/bold]')
+                console.print('[bold]You have manipulated the cylinder enough![/bold]')
                 pull_number = random.randint(1, 50)
                 final_fortune(pull_number)
         final_fortune(pull_number)
@@ -57,14 +57,14 @@ def final_fortune(pull_number):
     dai_kichi = [42, 38, 7, 10, 32, 11, 4, 37, 48, 16, 5]
     kyo = [46, 19, 31, 12, 20, 22, 41, 39, 13, 4]
     print(" ")
-    console.print(f"[i]You draw a stick from the cylinder, it has the number [blue]{pull_number}[/][/i]")
+    console.print(f"[i]You draw a stick from the cylinder, it has the number [#9699f2]{pull_number}[/][/i]")
     console.print("[i]You show the stick to the Shrine Maiden and she pulls a slip of paper from one of many drawers[/i]")
     console.print("[i]The slip of paper reads:[/i]")
     print(" ")
     if pull_number in dai_kyo:
-        console.print("[firebrick1]大凶, dai-kyō[/firebrick1]")
+        console.print("[#910410]大凶, dai-kyō[/#910410]")
         print(" ")
-        console.print("dai-kyō represents a [b][firebrick1]terrible curse![/b][/firebrick1]")
+        console.print("dai-kyō represents a [b][#910410]terrible curse![/b][/#910410]")
         console.print("Perhaps it would behoove you to not step on any cracks...")
         print(" ")
     elif pull_number in sho_kichi:
@@ -86,15 +86,15 @@ def final_fortune(pull_number):
         console.print("I dunno what's gonna happen but it must be [u]good!!![/u]")
         print(" ")
     elif pull_number in kyo:
-        console.print("[orange]凶, kyō[/orange]")
+        console.print("[#ed620c]凶, kyō[/#ed620c]")
         print(" ")
-        console.print("kyō represents a [i]small[/i] bit of [orange]bad luck...[/orange]")
+        console.print("kyō represents a [i]small[/i] bit of [#ed620c]bad luck...[/#ed620c]")
         console.print("You might just stub your toe or something soon...")
         print(" ")
     else:
-        console.print("[blue]吉凶未分, kikkyō imada wakarazu[/blue]")
+        console.print("[#9699f2]吉凶未分, kikkyō imada wakarazu[/#9699f2]")
         print(" ")
-        console.print("kikkyō imada wakarazu means that your fortunes are [cornflower blue]not yet fortold[/cornflower blue]")
+        console.print("kikkyō imada wakarazu means that your fortunes are [#9699f2]not yet fortold[/#9699f2]")
         console.print("Your [i]destiny[/i] is what you make it..")
         print(" ")
     input("Enter to continue: ")
@@ -124,7 +124,7 @@ def from_wish_block():
             prayer_box()
         elif direction == "North":
             pull_fortune()
-        elif direction == "Fortunes":
+        elif direction == "Wishes":
             wish_block()
         else:
             raise KeyboardInterrupt
@@ -138,16 +138,16 @@ def from_prayer_box():
             wish_block()
         elif direction == "North":
             pull_fortune()
-        elif direction == "Fortunes":
+        elif direction == "Pray":
             wish_block()
         else:
             raise KeyboardInterrupt
 
 def wish_block():
     print(" ")
-    print("[i]You arrive to rows of wires hung up with small wooden blocks dangling from them[/i]")
-    print("[i]These wooden blocks have people's wishes written on them[/i]")
-    print("[i]If you write a wish on block and then hang it up, it may come true...[/i]")
+    console.print("[i]You arrive to rows of wires hung up with small wooden blocks dangling from them[/i]")
+    console.print("[i]These wooden blocks have people's wishes written on them[/i]")
+    console.print("[i]If you write a wish on block and then hang it up, it may come true...[/i]")
     user_choice = Prompt.ask("What is it you choose? ", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
         write_on_block()
@@ -165,11 +165,11 @@ def write_on_block():
         with open('mywishes.csv', 'a') as file:
             writer = csv.writer(file)
             writer.writerow([date, user_wish])
-        print("[i]You hang the block upon the wire hopefully, fate is in the gods hands now...[/i]")
+        console.print("[i]You hang the block upon the wire hopefully, fate is in the gods hands now...[/i]")
         print(" ")
         to_do_next_wish()
     except EOFError as e:
-        print("Your wishes are full!")
+        console.print("[firered1]Your wishes are full![/firered1]")
         to_do_next_wish()
 
 def review_previous_wishes():
@@ -205,9 +205,9 @@ def prayer_box():
     round_number = random.randint(1, 5)
     print(" ")
     console.print("[i]There is a [b]large donation box[/b] with a rope attached to a bell hanging above it.[/i]")
-    console.print("[i]If you make a [b]donation[/b], you may ring the bell to pray for the [yellow]god's blessing.[/yellow][/i]")
+    console.print("[i]If you make a [b]donation[/b], you may ring the bell to pray for the [#ffff05]god's blessing.[/#ffff05][/i]")
     console.print("[i]It's your lucky day, you find a [b]coin[/b] on the ground with no one around...[/i]")
-    console.print("[i]Is it an [yellow]auspicious signp[/yellow]?[[/i]")
+    console.print("[i]Is it an [#ffff05]auspicious sign[/#ffff05]?[/i]")
     print(" ")
     donate = Confirm.ask("Drop the coin in the donation box?")
     if donate:
@@ -234,17 +234,17 @@ def prayer_box():
             console.print("[i]You feel something inside your shoe that wasn't there before.[/i]")
             console.print("[i]You take off your shoe to get it out but as you hop around on one leg,[/i]")
             console.print("[i]you lose your balance and fall over in the dirt[/i]")
-            console.print("[i]Today your luck feels [MediumOrchid1]unpredictable...[/MediumOrchid1][/i]")
+            console.print("[i]Today your luck feels [#de23d8]unpredictable...[/#de23d8][/i]")
             print(" ")
         else:
             console.print("[i]You hear the rustling of a nearby bush[/i]")
             console.print("[i]as you look over, a fox jumps out and greets you[/i]")
             console.print("[i]Foxes are a blessed symbol[/i]")
-            console.print("[i]Today your luck feels [white on dark violet]positively uncomparable[/white on dark violet][/i]")
+            console.print("[i]Today your luck feels [white on #9400f7]positively uncomparable[/white on #9400f7][/i]")
             print(" ")
         draw_fortune = Confirm.ask("With your newfound luck in hand perhaps you would like to try your hand at drawing a fortune?")
         if draw_fortune:
-            console.print("You [IndianRed1]rush[/IndianRed1] to the fortunes window and quickly take the [u]lottery cylinder[/u] in hand")
+            console.print("You [#f50707]rush[/#f50707] to the fortunes window and quickly take the [u]lottery cylinder[/u] in hand")
             print(" ")
             final_fortune(round_number)
         else:
@@ -256,13 +256,14 @@ def prayer_box():
 
 def entrance():
     print(" ")
-    print("Welcome to KaiShin Shrine!")
-    print("A large Tori gate stands before you,")
-    print("as you walk through it you notice a sign ahead.")
-    print("'\u2191 North you can find fortunes'")
-    print("'\u21B1 East you can find wishing blocks'")
-    print("'\u21B0 West you can pray to the gods of this shrine'")
-    print("Quit to exit")
+    console.print("[i]Welcome to [b]KaiShin Shrine![/b][/i]")
+    console.print("[i]A large Tori gate stands before you,[/i]")
+    console.print("[i]as you walk through it you notice a sign ahead[/i]")
+    print(" ")
+    console.print("\u2191 [i][black on yellow]North[/black on yellow] you can find fortunes[/i]")
+    console.print("\u21B1 [i][black on yellow]East[/black on yellow] you can find wishing blocks[/i]")
+    console.print("\u21B0 [i][black on yellow]West[/black on yellow] you can pray to the gods of this shrine[/i]")
+    console.print("[red]Quit[/red] to exit")
     print(" ")
     direction = Prompt.ask("Where would you like to go? ", choices=["North", "East", "West", "Quit"])
     if direction == "North":
