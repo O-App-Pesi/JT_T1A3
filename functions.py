@@ -97,7 +97,7 @@ def final_fortune(pull_number):
         console.print("kikkyō imada wakarazu means that your fortunes are [#9699f2]not yet fortold[/#9699f2]")
         console.print("Your [i]destiny[/i] is what you make it..")
         print(" ")
-    input("Enter to continue: ")
+    user_confirmation = input("Enter to continue: ")
     from_fortune()
     
 
