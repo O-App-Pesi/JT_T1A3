@@ -1,3 +1,4 @@
 shrinevisit/
 __pycache__
+.pytest_cache
 mywishes.csv

@@ -160,8 +160,8 @@ def write_on_block():
     try:
         column_name = ["Date", "Wish"]
         print(" ")
-        user_wish = input("What is your wish?")
-        date = input("What is today's date?")
+        user_wish = input("What is your wish? ")
+        date = input("What is today's date? ")
         with open('mywishes.csv', 'a') as file:
             writer = csv.writer(file)
             writer.writerow([date, user_wish])
@@ -169,7 +169,7 @@ def write_on_block():
         print(" ")
         to_do_next_wish()
     except EOFError as e:
-        console.print("[firered1]Your wishes are full![/firered1]")
+        console.print("[#ed1313]Your wishes are full![/#ed1313]")
         to_do_next_wish()
 
 def review_previous_wishes():
@@ -222,7 +222,7 @@ def prayer_box():
         elif round_number == 2:
             console.print("[i]You wait but nothing occurs... You close your eyes and pray[/i]")
             console.print("[i]You pray as hard as you can but nothing seems to happen[/i]")
-            console.print("[i]Today your luck feels [saddlebrown]inconsequential[/saddlebrown][/i]")
+            console.print("[i]Today your luck feels [#290a0a]inconsequential[/#290a0a][/i]")
             print(" ")
         elif round_number == 3:
             console.print("[i]You close your eyes and a cold shiver runs down your spine[/i]")
