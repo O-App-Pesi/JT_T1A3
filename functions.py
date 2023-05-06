@@ -16,37 +16,42 @@ def pull_fortune():
         pull_number = 0
         pick_up_cylinder = True
         while pick_up_cylinder:
-            action = Prompt.ask("What will you do?", 
-                                choices=["shake", "roll", "twist", "bash"])
-            if action == "shake":
-                print("You shake the cylinder vigorously")
-                action_number = random.randint(3, 8)
-                pull_number += action_number
-            elif action == "roll":
-                print("You roll the cylinder on its side systematically")
-                action_number = random.randint(1, 4)
-                pull_number += action_number
-            elif action == "twist":
-                print("You twist the cylinder left to right, the rods inside clunking top and bottom")
-                action_number = random.randint(5, 9)
-                pull_number += action_number 
-            elif action == "bash":
-                print("The shrine maiden gives you a funny look...")
-                action_number = random.randint(1, 6)
-                pull_number -= action_number
-            print(f"If you finish now you'll get {pull_number}")
-            pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
+            try:
+                action = Prompt.ask("What will you do?", 
+                                    choices=["shake", "roll", "twist", "bash"])
+                if action == "shake":
+                    print("You shake the cylinder vigorously")
+                    action_number = random.randint(3, 8)
+                    pull_number += action_number
+                elif action == "roll":
+                    print("You roll the cylinder on its side systematically")
+                    action_number = random.randint(1, 4)
+                    pull_number += action_number
+                elif action == "twist":
+                    print("You twist the cylinder left to right, the rods inside clunking top and bottom")
+                    action_number = random.randint(5, 9)
+                    pull_number += action_number 
+                elif action == "bash":
+                    print("The shrine maiden gives you a funny look...")
+                    action_number = random.randint(1, 6)
+                    pull_number -= action_number
+                print(f"If you finish now you'll get {pull_number}")
+                pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
+            except MemoryError as e:
+                print('You have manipulated the cylinder enough!')
+                pull_number = random.randint(1, 50)
+                final_fortune(pull_number)
         final_fortune(pull_number)
     else:
         from_fortune()
 
 
 def final_fortune(pull_number):
-    dai_kyo = [8, 47, 14, 25, 49, 6, 17, 23, 45, 26]
-    sho_kichi = [30, 33, 9, 44, 24, 18, 36, 34, 50, 43]
-    kichi = [40, 5, 29, 21, 15, 28, 35, 2, 1, 27]
-    dai_kichi = [42, 38, 7, 10, 32, 11, 4, 37, 48, 16]
-    kyo = [46, 19, 31, 12, 20, 22, 41, 39, 13, 3]
+    dai_kyo = [8, 47, 14, 25, 49, 6, 17, 45, 26, 3]
+    sho_kichi = [30, 33, 9, 44, 24, 18, 34, 50, 43, 2]
+    kichi = [40, 29, 21, 15, 28, 35, 23, 36, 27, 1]
+    dai_kichi = [42, 38, 7, 10, 32, 11, 4, 37, 48, 16, 5]
+    kyo = [46, 19, 31, 12, 20, 22, 41, 39, 13, 4]
     print(f"You draw a stick from the cylinder, it has the number {pull_number}")
     print("You show the stick to the shrine maiden and she pulls a slip of paper from one of many drawers")
     print("The slip of paper reads:")
@@ -67,9 +72,8 @@ def final_fortune(pull_number):
     
 
 def from_fortune():
-        direction = Prompt.ask("Where would you like to go?", 
-                               choices=["East", "West", "Entrance", "Fortunes"],
-                               default="Entrance")
+        direction = Prompt.ask("Where would you like to go?  ", 
+                               choices=["East", "West", "Entrance", "Fortunes"])
         if direction == "Entrance":
             entrance()
         elif direction == "West":
@@ -80,9 +84,8 @@ def from_fortune():
             pull_fortune()
 
 def from_wish_block():
-        direction = Prompt.ask("Where would you like to go?", 
-                               choices=["North", "West", "Entrance", "Wishes"],
-                               default="Entrance")
+        direction = Prompt.ask("Where would you like to go? ", 
+                               choices=["North", "West", "Entrance", "Wishes"])
         if direction == "Entrance":
             entrance()
         elif direction == "West":
@@ -92,11 +95,23 @@ def from_wish_block():
         elif direction == "Fortunes":
             wish_block()
 
+def from_prayer_box():
+        direction = Prompt.ask("Where would you like to go? ", 
+                               choices=["North", "East", "Entrance", "Pray"])
+        if direction == "Entrance":
+            entrance()
+        elif direction == "East":
+            wish_block()
+        elif direction == "North":
+            pull_fortune()
+        elif direction == "Fortunes":
+            wish_block()
+
 def wish_block():
     print("You arrive to rows of wires hung up with small wooden blocks dangling from them")
     print("These wooden blocks have people's wishes written on them")
     print("If you write a wish on block and then hang it up, it may come true...")
-    user_choice = Prompt.ask("What is it you choose?", choices=["Wish", "Review", "Leave"])
+    user_choice = Prompt.ask("What is it you choose? ", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
         write_on_block()
     elif user_choice == "Review":
@@ -105,26 +120,34 @@ def wish_block():
         from_wish_block()
 
 def write_on_block():
-    column_name = ["Date", "Wish"]
-    user_wish = input("What is your wish?")
-    date = input("What is today's date?")
-    with open('mywishes.csv', 'a') as file:
-        writer = csv.writer(file)
-        writer.writerow([date, user_wish])
-    print("Your hang the block upon the wire hopefully, fate is in the gods hands now...")
-    to_do_next_wish()
+    try:
+        column_name = ["Date", "Wish"]
+        user_wish = input("What is your wish?")
+        date = input("What is today's date?")
+        with open('mywishes.csv', 'a') as file:
+            writer = csv.writer(file)
+            writer.writerow([date, user_wish])
+        print("Your hang the block upon the wire hopefully, fate is in the gods hands now...")
+        to_do_next_wish()
+    except EOFError as e:
+        print("Your wishes are full!")
+        to_do_next_wish()
 
 def review_previous_wishes():
-    with open('mywishes.csv', "r") as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row[1])
-            print(f"This wish was made on {row[0]}")
-            print("Has it come true???")
-    to_do_next_wish()
+    try:
+        with open('mywishes.csv', "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                print(row[1])
+                print(f"This wish was made on {row[0]}")
+                print("Has it come true???")
+        to_do_next_wish()
+    except FileNotFoundError as e:
+        print("You didn't make any wishes yet!")
+        to_do_next_wish()
 
 def to_do_next_wish():
-    user_choice = Prompt.ask("What would you like to do next?", choices=["Wish", "Review", "Leave"])
+    user_choice = Prompt.ask("What would you like to do next? ", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
         write_on_block()
     elif user_choice == "Review":
@@ -166,7 +189,15 @@ def prayer_box():
             print("as you look over, a fox jumps out and greets you")
             print("Foxes are a blessed symbol")
             print("Today your luck feels positively uncomparable")
-        
+        draw_fortune = Confirm.ask("With your newfound luck in hand perhaps you would like to try your hand at drawing a fortune?")
+        if draw_fortune:
+            print("You rush to the fortunes window and quickly take the lottery box in hand")
+            final_fortune(round_number)
+        else:
+            from_prayer_box()
+    else:
+        from_prayer_box()
+
 
 
 def entrance():
@@ -176,8 +207,9 @@ def entrance():
     print("'\u2191 North you can find fortunes'")
     print("'\u21B1 East you can find wishing blocks'")
     print("'\u21B0 West you can pray to the gods of this shrine'")
+    print("Quit to exit")
     direction = ""
-    while direction == "":
+    while direction != "North" or "East" or "West" or "Quit":
         direction = input("Where would you like to go?  ")
         if direction == "North":
             pull_fortune()
@@ -185,6 +217,9 @@ def entrance():
             wish_block()
         elif direction == "West":
             prayer_box()
+        elif direction == "Quit":
+            break
+
 
 
     
