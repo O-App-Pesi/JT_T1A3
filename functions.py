@@ -1,7 +1,8 @@
 import random
 import csv
 from rich.prompt import Prompt, Confirm
-from colored import fg, bg, attr
+from console import console
+from rich.table import Table
 
 def pull_fortune():
     print("You arrive at a window where a shrine maiden is attending")
@@ -73,7 +74,7 @@ def final_fortune(pull_number):
 
 def from_fortune():
         direction = Prompt.ask("Where would you like to go?  ", 
-                               choices=["East", "West", "Entrance", "Fortunes"])
+                               choices=["East", "West", "Entrance", "Fortunes", "Quit"])
         if direction == "Entrance":
             entrance()
         elif direction == "West":
@@ -82,10 +83,12 @@ def from_fortune():
             wish_block()
         elif direction == "Fortunes":
             pull_fortune()
+        else:
+            raise KeyboardInterrupt
 
 def from_wish_block():
         direction = Prompt.ask("Where would you like to go? ", 
-                               choices=["North", "West", "Entrance", "Wishes"])
+                               choices=["North", "West", "Entrance", "Wishes", "Quit"])
         if direction == "Entrance":
             entrance()
         elif direction == "West":
@@ -94,10 +97,12 @@ def from_wish_block():
             pull_fortune()
         elif direction == "Fortunes":
             wish_block()
+        else:
+            raise KeyboardInterrupt
 
 def from_prayer_box():
         direction = Prompt.ask("Where would you like to go? ", 
-                               choices=["North", "East", "Entrance", "Pray"])
+                               choices=["North", "East", "Entrance", "Pray", "Quit"])
         if direction == "Entrance":
             entrance()
         elif direction == "East":
@@ -106,6 +111,8 @@ def from_prayer_box():
             pull_fortune()
         elif direction == "Fortunes":
             wish_block()
+        else:
+            raise KeyboardInterrupt
 
 def wish_block():
     print("You arrive to rows of wires hung up with small wooden blocks dangling from them")
@@ -137,10 +144,13 @@ def review_previous_wishes():
     try:
         with open('mywishes.csv', "r") as file:
             reader = csv.reader(file)
+            table = Table(title="My Wishes")
+            table.add_column("Date", justify="center", style="cyan", no_wrap=True)
+            table.add_column("Wish", justify="center", style="green")
             for row in reader:
-                print(row[1])
-                print(f"This wish was made on {row[0]}")
-                print("Has it come true???")
+                table.add_row(row[0], row[1])
+            console.print(table)
+            console.print("Have you wishes come true?")  
         to_do_next_wish()
     except FileNotFoundError as e:
         print("You didn't make any wishes yet!")
@@ -208,17 +218,15 @@ def entrance():
     print("'\u21B1 East you can find wishing blocks'")
     print("'\u21B0 West you can pray to the gods of this shrine'")
     print("Quit to exit")
-    direction = ""
-    while direction != "North" or "East" or "West" or "Quit":
-        direction = input("Where would you like to go?  ")
-        if direction == "North":
-            pull_fortune()
-        elif direction == "East":
-            wish_block()
-        elif direction == "West":
-            prayer_box()
-        elif direction == "Quit":
-            break
+    direction = Prompt.ask("Where would you like to go? ", choices=["North", "East", "West", "Quit"])
+    if direction == "North":
+        pull_fortune()
+    elif direction == "East":
+        wish_block()
+    elif direction == "West":
+        prayer_box()
+    elif direction == "Quit":
+        raise KeyboardInterrupt
 
 
 
