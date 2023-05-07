@@ -45,7 +45,15 @@ This application uses Prompt and Confirm from the Rich Package. Using Prompt and
 
 Hello and Welcome to Kaishin Shrine!
 
-In order to start the application, navigate to the source directy inside your terminal and input:
+You can [clone this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or download the code as a zip using the green <>Code button on github.
+
+![Green Code Button](./Resources/Green%20Code%20Button.jpg)
+
+Once the zip is downloaded, extract all the files using your preferred method. For example, you can right click and select Extract All on Windows.
+
+![Extract All](/Resources/Extract%20All%20Instructions.jpg)
+
+In order to start the application, navigate to the src directory inside your terminal and input:
 ```
 ./run.sh
 ```
