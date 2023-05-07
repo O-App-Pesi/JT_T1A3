@@ -23,6 +23,7 @@ def pull_fortune():
             try:
                 action = Prompt.ask("What will you do?", 
                                     choices=["shake", "roll", "twist", "bash"])
+                print(" ")
                 if action == "shake":
                     console.print("[i]You shake the cylinder vigorously[/i]")
                     action_number = random.randint(3, 8)
@@ -40,6 +41,7 @@ def pull_fortune():
                     action_number = random.randint(1, 6)
                     pull_number -= action_number
                 console.print(f"If you finish now you'll get {pull_number}")
+                print(" ")
                 pick_up_cylinder = Confirm.ask("Continue manipulating the cylinder?")
             except MemoryError as e:
                 console.print('[bold]You have manipulated the cylinder enough![/bold]')
@@ -148,6 +150,7 @@ def wish_block():
     console.print("[i]You arrive to rows of wires hung up with small wooden blocks dangling from them[/i]")
     console.print("[i]These wooden blocks have people's wishes written on them[/i]")
     console.print("[i]If you write a wish on block and then hang it up, it may come true...[/i]")
+    print(" ")
     user_choice = Prompt.ask("What is it you choose? ", choices=["Wish", "Review", "Leave"])
     if user_choice == "Wish":
         write_on_block()
@@ -165,6 +168,7 @@ def write_on_block():
         with open('mywishes.csv', 'a') as file:
             writer = csv.writer(file)
             writer.writerow([date, user_wish])
+        print(" ")
         console.print("[i]You hang the block upon the wire hopefully, fate is in the gods hands now...[/i]")
         print(" ")
         to_do_next_wish()
@@ -188,7 +192,9 @@ def review_previous_wishes():
             print(" ")
         to_do_next_wish()
     except FileNotFoundError as e:
+        print(" ")
         print("You didn't make any wishes yet!")
+        print(" ")
         to_do_next_wish()
 
 def to_do_next_wish():
@@ -210,6 +216,7 @@ def prayer_box():
     console.print("[i]Is it an [#ffff05]auspicious sign[/#ffff05]?[/i]")
     print(" ")
     donate = Confirm.ask("Drop the coin in the donation box?")
+    print(" ")
     if donate:
         console.print("[i]You drop the coin in the donation box and hear it clink on the bottom.[/i]")
         console.print("[i]Grabbing the rope firmly, you whip it and the bell rings [b]loudly[/b]...[/i]")
@@ -217,7 +224,7 @@ def prayer_box():
         if round_number == 1:
             console.print("[i]Suddenly an [green]auspicious wind[/green] whips up some fallen leaves, swirling all around you[/i]")
             console.print("[i]Chimes hanging from the eaves begin to jingle and you feel a cool breeze on your neck[/i]")
-            console.print("[i]Today your luck feels... [gold]irridescent[/gold][/i]")
+            console.print("[i]Today your luck feels... [#f2ef3d]irridescent[/#f2ef3d][/i]")
             print(" ")
         elif round_number == 2:
             console.print("[i]You wait but nothing occurs... You close your eyes and pray[/i]")

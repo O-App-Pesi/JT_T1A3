@@ -1,5 +1,6 @@
-# Git Repository
-https://github.com/O-App-Pesi/JT_T1A3
+# [Git Repository](https://github.com/O-App-Pesi/JT_T1A3)
+
+# [Video Presentation](https://youtu.be/hWorMPO9-u8)
 
 # Styling
 Standard Python Styling.
@@ -52,22 +53,22 @@ The application will activate the virtual enviroment and install the python pack
 
 Windows Users should be using the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) or Ubuntu.
 
-### Dependencies
+### **Dependencies**
 
 This application utilises the [rich](https://pypi.org/project/rich/) python library. From this library, it imports [prompt](https://rich.readthedocs.io/en/stable/prompt.html), [console](https://rich.readthedocs.io/en/stable/console.html) and [table](https://rich.readthedocs.io/en/stable/tables.html).
 From the standard python library, this application imports [random](https://python.readthedocs.io/en/stable/library/random.html) and [csv](https://python.readthedocs.io/en/stable/library/csv.html?highlight=csv#module-csv). Some functions require a csv file to run.
 
-### System Requirements
+### **System Requirements**
 
 This application was built on Windows 11 using Python 3.
 
-Processor: 1 gigahertz (GHz) or faster processor or SoC
-RAM: 1 gigabyte (GB) for 32-bit or 2 GB for 64-bit
-Hard disk space: 16 GB for 32-bit OS or 20 GB for 64-bit OS
-Graphics card: DirectX 9 or later with WDDM 1.0 driver
-Display: 800 x 600
+- Processor: 1 gigahertz (GHz) or faster processor or SoC
+- RAM: 1 gigabyte (GB) for 32-bit or 2 GB for 64-bit
+- Hard disk space: 16 GB for 32-bit OS or 20 GB for 64-bit OS
+- Graphics card: DirectX 9 or later with WDDM 1.0 driver
+- Display: 800 x 600
 
-### How to Use
+### **How to Use**
 
 While using the application, you will be prompted for input from your keyboard:
 
