@@ -31,3 +31,68 @@ This application uses Prompt and Confirm from the Rich Package. Using Prompt and
 
 # Implementation Plan
 
+![Develop Shrine Simulation](./Resources/Develop%20Shrine%20Visit.jpg)
+
+![Create Pull_Fortunes](./Resources/Create%20Pull_Fortunes.jpg)
+
+![Create Prayer_Box and Wish_Block](./Resources/Create%20Prayer_Box%20and%20Wish_Block.jpg)
+
+## [Trello Board](https://trello.com/b/oTUip4OV/shrine-visit)
+
+
+# Help Guide
+
+Hello and Welcome to Kaishin Shrine!
+
+In order to start the application, navigate to the source directy inside your terminal and input:
+```
+./run.sh
+```
+The application will activate the virtual enviroment and install the python packages required to run this application.
+
+Windows Users should be using the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) or Ubuntu.
+
+### Dependencies
+
+This application utilises the [rich](https://pypi.org/project/rich/) python library. From this library, it imports [prompt](https://rich.readthedocs.io/en/stable/prompt.html), [console](https://rich.readthedocs.io/en/stable/console.html) and [table](https://rich.readthedocs.io/en/stable/tables.html).
+From the standard python library, this application imports [random](https://python.readthedocs.io/en/stable/library/random.html) and [csv](https://python.readthedocs.io/en/stable/library/csv.html?highlight=csv#module-csv). Some functions require a csv file to run.
+
+### System Requirements
+
+This application was built on Windows 11 using Python 3.
+
+Processor: 1 gigahertz (GHz) or faster processor or SoC
+RAM: 1 gigabyte (GB) for 32-bit or 2 GB for 64-bit
+Hard disk space: 16 GB for 32-bit OS or 20 GB for 64-bit OS
+Graphics card: DirectX 9 or later with WDDM 1.0 driver
+Display: 800 x 600
+
+### How to Use
+
+While using the application, you will be prompted for input from your keyboard:
+
+![User Input 1](./Resources/User%20Input%201.jpg)
+
+Next to each question, the options available are indicated in purple surrounded by square brackets and separated by slashes.
+
+If you do not enter one of the valid inputs you will prompted by text in red and asked the question again.
+
+![User Input Incorrect](./Resources/User%20Input%20Incorrect.jpg)
+
+Some inputs only require a "y" or an "n", indicating a yes to proceed or a no to exit.
+
+![User Input 2](./Resources/User%20Input%202.jpg)
+
+Entering "n" in this situation will not exit the program but allows you to redirect to another section of the program.
+
+If there is no option to Quit the program, navigate backwards until the option becomes available.
+
+![User Quit](./Resources/User%20Quit.jpg)
+
+Inside the fortunes section, the objective is to get between 1 and 50. Everytime you perform an action, the total will increase or decrease and your new total will be displayed. 
+
+![Default Fortune](./Resources/Default%20Fortune.jpg)
+
+Getting below 0 or above 50 will result in the default fortune being drawn. Try and find all available options!
+
+
