@@ -32,11 +32,11 @@ This application uses Prompt and Confirm from the Rich Package. Using Prompt and
 
 # Implementation Plan
 
-![Develop Shrine Simulation](./Resources/Develop%20Shrine%20Visit.jpg)
+![Develop Shrine Simulation](./docs/Develop%20Shrine%20Visit.jpg)
 
-![Create Pull_Fortunes](./Resources/Create%20Pull_Fortunes.jpg)
+![Create Pull_Fortunes](./docs/Create%20Pull_Fortunes.jpg)
 
-![Create Prayer_Box and Wish_Block](./Resources/Create%20Prayer_Box%20and%20Wish_Block.jpg)
+![Create Prayer_Box and Wish_Block](./docs/Create%20Prayer_Box%20and%20Wish_Block.jpg)
 
 ## [Trello Board](https://trello.com/b/oTUip4OV/shrine-visit)
 
@@ -47,13 +47,16 @@ Hello and Welcome to Kaishin Shrine!
 
 You can [clone this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or download the code as a zip using the green <>Code button on github.
 
-![Green Code Button](./Resources/Green%20Code%20Button.jpg)
+![Green Code Button](./docs/Green%20Code%20Button.jpg)
 
-Once the zip is downloaded, extract all the files using your preferred method. For example, you can right click and select Extract All on Windows.
+Once the zip is downloaded, extract all the files using your preferred method. For example, you can right click and select Extract All on Windows 11.
 
-![Extract All](/Resources/Extract%20All%20Instructions.jpg)
+![Extract All](/docs/Extract%20All%20Instructions.jpg)
 
-In order to start the application, navigate to the src directory inside your terminal and input:
+In order to start the application, open the extracted folder. Holding **Shift**, right click on the **src** folder and select **Open Linux Shell Here**.
+
+![Open Linux Shell](./docs/Open%20Linux%20Shell.jpg)
+
 ```
 ./run.sh
 ```
@@ -80,27 +83,27 @@ This application was built on Windows 11 using Python 3.
 
 While using the application, you will be prompted for input from your keyboard:
 
-![User Input 1](./Resources/User%20Input%201.jpg)
+![User Input 1](./docs/User%20Input%201.jpg)
 
 Next to each question, the options available are indicated in purple surrounded by square brackets and separated by slashes.
 
 If you do not enter one of the valid inputs you will prompted by text in red and asked the question again.
 
-![User Input Incorrect](./Resources/User%20Input%20Incorrect.jpg)
+![User Input Incorrect](./docs/User%20Input%20Incorrect.jpg)
 
 Some inputs only require a "y" or an "n", indicating a yes to proceed or a no to exit.
 
-![User Input 2](./Resources/User%20Input%202.jpg)
+![User Input 2](./docs/User%20Input%202.jpg)
 
 Entering "n" in this situation will not exit the program but allows you to redirect to another section of the program.
 
 If there is no option to Quit the program, navigate backwards until the option becomes available.
 
-![User Quit](./Resources/User%20Quit.jpg)
+![User Quit](./docs/User%20Quit.jpg)
 
 Inside the fortunes section, the objective is to get between 1 and 50. Everytime you perform an action, the total will increase or decrease and your new total will be displayed. 
 
-![Default Fortune](./Resources/Default%20Fortune.jpg)
+![Default Fortune](./docs/Default%20Fortune.jpg)
 
 Getting below 0 or above 50 will result in the default fortune being drawn. Try and find all available options!
 
